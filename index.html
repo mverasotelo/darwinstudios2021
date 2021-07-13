@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darwin Studios</title>
+    <meta name="description" content="Darwin Studios es un salón de eventos y complejo de locaciones que surge de la reconversión de una fábrica antigua en pleno Palermo.">
+    <meta name="keywords" content="set, locación, jornada de filmación, rodaje, streaming, estudio, fotografía, estudio de tv, venue, darwin studios, darwin estudios">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Solway:wght@700&family=Work+Sans:wght@500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d71332221e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js" crossorigin="anonymous"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' type='text/javascript'></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+ 
+<body>
+    <div>
+        <div v-show="show" id="loader" v-show="show"></div>
+        <header class="header">
+            <ul id="menuDesp" class="header-container">
+                <li><a href="index.html"><img class="logo" src="img/isoB.png"></a></li>
+                <li>
+                    <i><a class="fab fa-instagram icon" href="https://www.instagram.com/darwin_studios/" target=_blank></a></i>
+                    <i id="menuIcon" class="icon fas fa-bars" :class="iconoMenu" @click="desplegarMenu"></i>
+                    <nav id="menu" :class="menuClass">
+                        <ul class="nav">
+                            <li><a @click="cerrarMenu" href="#explora">ESPACIOS</a></li>
+                            <li><a href="producciones.html">PRODUCCIONES</a></li>
+                            <li><a href="nosotros.html">NOSOTROS</a></li>
+                            <li><a href="contacto.html">CONTACTO</a></li>
+                        </ul>
+                    </nav> 
+                </li>   
+            </ul>
+        </header>
+        <main>
+            <div id="whatsapp">
+                <div id="hablemos"> <a href="https://api.whatsapp.com/send?phone=+541162896589" target=_blank>Hablemos</a></div>
+                <div id="logo-Whatsapp"> <a class="fab fa-whatsapp" href="https://api.whatsapp.com/send?phone=+541162896589" target=_blank></a></div>
+            </div>
+    <section id="home">
+        <video alt="Darwin Studios" autoplay loop muted preload="auto" data-mobile-video>
+            <source type="video/mp4" src= "img/darwin_presentacion.mp4">
+            <source type="video/webm" src="img/darwin_presentacion.webm">
+        </video>           
+        <div id="textoSuperpuesto"><p>Espacios al servicio de tu historia</p></div>            
+        <a href="#explora" class="ver-mas"><p>Ver más</p><div class="fas fa-long-arrow-alt-down"></div></a>
+    </section>
+    <section id="explora" class="explora">
+        <div class="bajada">    
+            <h2>Explorá</h2>
+            <h3>Darwin Studios es una fábrica antigua de más de 7.000 m² reconvertida en complejo de locaciones, salón de eventos, espacio de oficinas y estudios privados en pleno Distrito Audiovisual de Palermo.</h3>
+        </div>
+        <div class="grid">
+            <venue-card
+                v-for="venue, i in venues"
+                :index="i"   
+                :title="venue.title"   
+                :image="venue.image">    
+            </venue-card>
+            <div class="pop-up" v-show="popUp" v-cloak>
+                <div class="cuadro" scrolling="yes">
+                    <div class="carrousel">
+                        <img v-bind:src="imagenEspacio" v-bind:alt="titulo" v-bind:title="titulo">
+                        <div :class="next" @click="pasarFoto()" tabindex="0"></div>
+                        <div :class="back" @click="retrocederFoto()" tabindex="0"></div>
+                    </div>
+                    <div class="texto">
+                        <h4>{{titulo}}</h4>
+                        <br>
+                        <p v-for="(val) in caracteristica">{{val}}</p>
+                        <p v-show="plano" class="plano"><a :href="planoHref" v-html="texto" @click></a></p>
+                    </div>
+                        <div class="cerrarCuadro icon fas fa-times" @click="cerrarCuadro()" tabindex="0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="services"> 
+        <div class="bajada">    
+            <h2>Services</h2>
+        </div>
+        <div class="grid">
+            <service-card
+                v-for="service in services"
+                    :title="service.title"   
+                    :content="service.content"         
+            ></service-card>
+        </div>                
+    </section>
+</main>
+<footer>
+    <div class="footercontainer">
+        <p><a target=blank_ href="https://www.google.com.ar/maps/place/Darwin+Studios/@-34.5855648,-58.4455463,15z/data=!4m5!3m4!1s0x95bcb58cbad0b66f:0x6500ed544b3d4673!8m2!3d-34.5888237!4d-58.4368656">Niceto Vega 5350 </a>| Palermo | Buenos Aires | Argentina | <a href="mailto:info@darwinstudios.com.ar?subject:Consulta">info@darwinstudios.com.ar</a></a></p>
+        <p id="firma">Sitio web desarrollado por Mercedes Vera Sotelo</p>
+    </div>
+</footer>
+</div>
+</body>
+<script src="js/scripts.js" async="async"></script>
+<script src="js/vue.js" async="async"></script>
+</html>
